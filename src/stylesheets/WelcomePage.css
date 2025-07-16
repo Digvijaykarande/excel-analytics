@@ -1,0 +1,136 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  height: 100%;
+  font-family: 'Poppins', sans-serif;
+}
+
+.welcome-container {
+  height: 100vh;
+  width: 100%;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Glassmorphism Card */
+.glass-card {
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 20px;
+  padding: 40px;
+  max-width: 700px;
+  text-align: center;
+  color: #fff;
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  animation: fadeIn 1s ease-in-out;
+}
+
+.glass-card h1 {
+  font-size: 2.8rem;
+  margin-bottom: 1rem;
+}
+
+.brand {
+  color: #ffd700;
+}
+
+.glass-card p {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  color: #e0e0e0;
+  line-height: 1.6;
+}
+
+.button-group {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.primary-btn,
+.secondary-btn {
+  padding: 12px 30px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.primary-btn {
+  background: #ffd700;
+  color: #1e3c72;
+  font-weight: bold;
+}
+
+.primary-btn:hover {
+  background: #ffcc00;
+  transform: translateY(-2px);
+}
+
+.secondary-btn {
+  background: transparent;
+  border: 2px solid #ffd700;
+  color: #ffd700;
+}
+
+.secondary-btn:hover {
+  background: #ffd700;
+  color: #1e3c72;
+  transform: translateY(-2px);
+}
+
+.decorative-circle {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.3;
+  z-index: 1;
+}
+
+.circle1 {
+  width: 600px;
+  height: 600px;
+  background: #00c6ff;
+  top: -100px;
+  left: -150px;
+}
+
+.circle2 {
+  width: 500px;
+  height: 500px;
+  background: #f7797d;
+  bottom: -100px;
+  right: -100px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media screen and (max-width: 768px) {
+  .glass-card h1 {
+    font-size: 2rem;
+  }
+
+  .glass-card p {
+    font-size: 1rem;
+  }
+
+  .button-group {
+    flex-direction: column;
+    gap: 15px;
+  }
+}

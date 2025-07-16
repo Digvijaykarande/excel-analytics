@@ -1,0 +1,86 @@
+.chart-page {
+    padding: 5px;
+    position: relative;
+    width: 98%;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f9fafc;
+  min-height: 100vh;
+  color: #333;
+}
+
+.chart-page h2 {
+  font-size: 1.8rem;
+  margin-bottom:5px;
+  color: #5c5454;
+}
+
+.upload-section input[type="file"] {
+  padding: 1rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background-color:#e6e6e6;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.upload-section input[type="file"]:hover {
+  border-color: #007bff;
+}
+
+.controls {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.controls label {
+  font-weight: 500;
+  margin-right: 0.5rem;
+}
+
+.controls select {
+  padding: 0.4rem 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #fff;
+  font-size: 1rem;
+  min-width: 120px;
+  transition: border 0.3s ease;
+}
+
+.controls select:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.chart-container {
+  margin-top:10px;
+ background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  padding: 1.2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  display: flex;
+
+}
+
+.chart-container button {
+  padding: 8px 16px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 6px;
+  background-color: #1e3c72;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.chart-container button:hover {
+  background-color: #2a5298;
+}
+.download-btns{
+  position: relative;
+  margin-top: 25vh;
+  margin-left:5vw;
+}
