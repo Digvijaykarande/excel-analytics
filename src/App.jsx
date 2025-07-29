@@ -12,6 +12,7 @@ import ChartPage from './components/ChartPage';
 import MyProjects from './components/MyProjects';
 import History from './components/History';
 import WelcomePage from './components/WelcomePage';
+import ExcelSummary from './components/ExcelSummary';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
             <Route path="chartpage" element={<ChartPage />} />
             <Route path="uploadfile" element={<UploadFilePage />} />
             <Route path="myprojects" element={<MyProjects />} />
+            <Route path="summarypage" element={<ExcelSummary />} />
             <Route path="history" element={<History />} />
             <Route path="about" element={<About />} />
             <Route path="contact" element={<Contact />} />

@@ -70,6 +70,7 @@ const Sidebar = () => {
       <ul>
     <li ><span className='icon'></span><Link to='/dashboard'>Dashboard</Link></li>
     <li ><span className='icon'></span><Link to='/dashboard/chartpage'>New Project +</Link></li>
+    <li><span className='icon'></span><Link to="/dashboard/summarypage">AI Summary</Link></li>
     <li><span className='icon'></span><Link to='/dashboard/myprojects'>My Projects</Link></li>
     <li><span className='icon'></span><Link to='/dashboard/uploadfile'>Save Files in cloud</Link></li>
     <li><span className='icon'></span><Link to="/dashboard/about">About</Link></li>
@@ -99,4 +100,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+export default Sidebar;  
