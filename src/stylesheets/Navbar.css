@@ -1,19 +1,20 @@
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #ffffff;
-  padding: 1rem 2rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  font-family: 'Segoe UI', sans-serif;
-  position: relative;
-  z-index: 10;
+    display: flex;
+    gap: 5vw;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 1rem 2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    font-family: 'Segoe UI', sans-serif;
+    position: relative;
+    z-index: 10;
 }
 
 .logo {
   font-size: 1.7rem;
   font-weight: 600;
-  color: #1a1a1a;
+  color: #0e0e0e;
   display: flex;
   align-items: center;
 }

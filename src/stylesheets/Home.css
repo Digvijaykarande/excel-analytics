@@ -2,6 +2,15 @@
     width: 100vw;
     height: 100vh;
     background-color:#ffffff;
-    overflow: hidden;
+   overflow: hidden;
     display: flex;
+}
+@media (max-width: 768px) {
+    .home {
+    width: 100vw;
+    background-color:#ffffff;
+   overflow:auto;
+    display: flex;
+    }
+    
 }

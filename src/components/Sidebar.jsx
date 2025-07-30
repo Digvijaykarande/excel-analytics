@@ -12,10 +12,15 @@ const Sidebar = () => {
     navigate("/login");
   };
 
+ if (window.innerWidth <= 768) {
+      return (
+        <div className="sidebar"style={{display: 'none'}}>
+        </div>
+      )
+    }
   useEffect(() => {
     const fetchUser = async () => {
       const token = localStorage.getItem("token");
-
       if (!token){
         navigate("/login"); 
         return;

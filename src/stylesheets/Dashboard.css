@@ -12,3 +12,9 @@
     position: relative;
     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
+@media screen and (max-width: 768px) {
+    .main-content{
+        height: 100vh;
+    }
+    
+}

@@ -11,7 +11,6 @@ function Home() {
      <Sidebar />
      <Outlet />
    </div>
-  
    </>
   )
 }

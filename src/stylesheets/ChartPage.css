@@ -1,23 +1,25 @@
 .chart-page {
-    padding: 5px;
-    position: relative;
-    width: 98%;
+  padding: 10px;
+  width: 100%;
   font-family: 'Segoe UI', sans-serif;
   background-color: #f9fafc;
   min-height: 100vh;
   color: #333;
+  box-sizing: border-box;
 }
 
 .chart-page h2 {
-  font-size: 1.8rem;
-  margin-bottom:5px;
+  font-size: 1.5rem;
+  margin-bottom: 5px;
   color: #ffffff;
+  text-align: center;
 }
+
 .upload-section {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 4px;
+  padding: 8px;
 }
 
 .upload-section input[type="file"] {
@@ -48,6 +50,7 @@
   align-items: center;
   flex-wrap: wrap;
   gap: 1rem;
+  justify-content: center;
 }
 
 .controls label {
@@ -71,18 +74,25 @@
 }
 
 .chart-container {
-  margin-top:10px;
- background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-  padding: 1.2rem;
+  margin-top: 8px;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  padding: 1rem;
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
 
+.chart-container canvas {
+  max-width: 100%;
+  height: auto;
 }
 
 .chart-container button {
   padding: 8px 16px;
-  margin-right: 10px;
+  margin: 5px;
   border: none;
   border-radius: 6px;
   background-color: #48bcb9;
@@ -94,22 +104,79 @@
 .chart-container button:hover {
   background-color: #2a5298;
 }
-.download-btns{
-    position: relative;
-    height: 15vh;
-    display: flex;
-    width: 20vw;
-    margin-left: 0;
+
+.download-btns {
+      display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    gap: 10px;
+    justify-content: flex-start;
+    align-items: center;
+    flex: 1;
+    width: 200px;
 }
+
 .summary-section{
   display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-end;
+    position: relative;
 }
-.summary-btn{
-    width: fit-content;
-    height: 5vh;
-    color: white;
+
+
+.summary-btn {
+  background-color: #3a86ff;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: white;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.summary-btn:hover {
+  background-color: #265dc1;
+}
+
+@media (max-width: 768px) {
+  .controls {
+    margin-top:5px;
+    display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        gap: 4px;
+  }
+
+  .chart-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .download-btns {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .summary-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+  .summary-section pre {
+    font-size: 0.85rem;
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .custom-file-upload {
+    font-size: 0.9rem;
+    padding: 0.8rem 1.6rem;
+  }
 }
