@@ -35,6 +35,9 @@ const Sidebar = () => {
           console.error("User fetch failed:", data.msg);
           navigate('/login')
         }
+        if(!data){
+          navigate('/login')
+        }
       } catch (err) {
         console.error("Error fetching user:", err);
          navigate("/login"); 

@@ -17,7 +17,6 @@ const ExcelSummary = () => {
       const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
       const json = XLSX.utils.sheet_to_json(firstSheet);
 
-      // Optional: Slice first few rows to keep prompt small
       const shortData = JSON.stringify(json.slice(0, 5), null, 2);
 
       setLoading(true);
@@ -35,7 +34,7 @@ const ExcelSummary = () => {
 
   return (
     <div style={{ padding: "2rem", maxWidth: "600px", margin: "auto" }}>
-      <h2>📊 Summarize Excel File with Perplexity AI</h2>
+      <h2>📊 Summarize Excel File with AI</h2>
       <input type="file" accept=".xlsx,.xls" onChange={handleFile} />
       {loading && <p>⏳ Summarizing...</p>}
       {summary && (

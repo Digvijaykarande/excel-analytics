@@ -11,20 +11,35 @@
 .chart-page h2 {
   font-size: 1.8rem;
   margin-bottom:5px;
-  color: #5c5454;
+  color: #ffffff;
+}
+.upload-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4px;
 }
 
 .upload-section input[type="file"] {
-  padding: 1rem;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  background-color:#e6e6e6;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  display: none;
 }
 
-.upload-section input[type="file"]:hover {
-  border-color: #007bff;
+.custom-file-upload {
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.custom-file-upload:hover {
+  background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
 .controls {
@@ -70,7 +85,7 @@
   margin-right: 10px;
   border: none;
   border-radius: 6px;
-  background-color: #1e3c72;
+  background-color: #48bcb9;
   color: white;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -80,7 +95,21 @@
   background-color: #2a5298;
 }
 .download-btns{
-  position: relative;
-  margin-top: 25vh;
-  margin-left:5vw;
+    position: relative;
+    height: 15vh;
+    display: flex;
+    width: 20vw;
+    margin-left: 0;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.summary-section{
+  display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.summary-btn{
+    width: fit-content;
+    height: 5vh;
+    color: white;
 }

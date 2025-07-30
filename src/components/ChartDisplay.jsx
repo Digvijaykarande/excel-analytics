@@ -3,7 +3,7 @@ import Chart from 'chart.js/auto';
 
 const ChartDisplay = forwardRef(({ data, xKey, yKey, type }, ref) => {
   const canvasRef = useRef();
-  let chartInstance = useRef();
+  const chartInstance = useRef();
 
   useImperativeHandle(ref, () => ({
     downloadImage: (format = 'png') => {
@@ -39,7 +39,9 @@ const ChartDisplay = forwardRef(({ data, xKey, yKey, type }, ref) => {
       }
     });
 
-    return () => chartInstance.current.destroy();
+    return () => {
+      chartInstance.current?.destroy();
+    };
   }, [data, xKey, yKey, type]);
 
   return (
