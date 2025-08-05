@@ -6,11 +6,12 @@ import About from "./Pages/About";
 import Contact from './Pages/Contact';
 import ProtectedRoute from './components/ProtectedRoute';
 import AdminDashboard from './admin/AdminDashboard';
+import Userinfo from '../src/admin/Userinfo';
+import Uploadsinfo from '../src/admin/Uploadsinfo';
 import UploadFilePage from './components/UploadFilePage';
 import Dashboard from './components/Dashboard';
 import ChartPage from './components/ChartPage'; 
 import MyProjects from './components/MyProjects';
-import History from './components/History';
 import WelcomePage from './components/WelcomePage';
 import ExcelSummary from './components/ExcelSummary';
 
@@ -28,9 +29,11 @@ function App() {
             <Route path="uploadfile" element={<UploadFilePage />} />
             <Route path="myprojects" element={<MyProjects />} />
             <Route path="summarypage" element={<ExcelSummary />} />
-            <Route path="history" element={<History />} />
             <Route path="about" element={<About />} />
             <Route path="contact" element={<Contact />} />
+            <Route path='admin-dashboard'element={<AdminDashboard />}></Route>
+            <Route path='userinfo'element={<Userinfo />}></Route>
+            <Route path='uploadsinfo' element={<Uploadsinfo />}></Route>
           </Route>
         </Route>
 

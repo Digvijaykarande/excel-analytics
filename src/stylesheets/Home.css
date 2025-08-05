@@ -1,14 +1,14 @@
 .home{
     width: 100vw;
     height: 100vh;
-    background-color:#ffffff;
+    background-color:#f9fafc;
    overflow: hidden;
     display: flex;
 }
 @media (max-width: 768px) {
     .home {
     width: 100vw;
-    background-color:#ffffff;
+    background-color:#f9fafc;
    overflow:auto;
     display: flex;
     }
