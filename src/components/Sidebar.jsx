@@ -89,8 +89,7 @@ const Sidebar = () => {
         <p className="section-title">Services</p>
         <ul>
           <li><span className='icon'></span><Link to='/dashboard/admin-dashboard'>Admin Dashboard</Link></li>
-          <li><span className='icon'></span><Link to="/dashboard/userinfo">Users Info</Link></li>
-          <li><span className='icon'></span><Link to='/dashboard/uploadsinfo'>Uploads Info</Link></li>
+          <li><span className='icon'></span><Link to="/dashboard/userinfo">Uploads Info</Link></li>
          </ul>
          </div>
       )}
