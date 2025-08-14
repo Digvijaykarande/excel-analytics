@@ -112,7 +112,7 @@ function Userinfo() {
                   User Name {sortConfig.key === "userName" ? (sortConfig.direction === "asc" ? "▲" : "▼") : ""}
                 </th>
                 <th onClick={() => handleSort("userId")}>
-                  User Email {sortConfig.key === "userId" ? (sortConfig.direction === "asc" ? "▲" : "▼") : ""}
+                  User Id {sortConfig.key === "userId" ? (sortConfig.direction === "asc" ? "▲" : "▼") : ""}
                 </th>
                 <th>Files</th>
               </tr>
