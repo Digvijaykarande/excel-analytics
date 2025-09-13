@@ -94,6 +94,7 @@ function ChartPage() {
             yKey={yKey}
             type={chartType}
           />
+        <div className='section3-download-summary'>
           <div className="download-btns">
             <button onClick={() => chartRef.current.downloadImage('png')}>Download as PNG</button>
             <button onClick={() => chartRef.current.downloadImage('jpg')}>Download as JPG</button>
@@ -108,6 +109,8 @@ function ChartPage() {
             </div>
           )}
         </div>
+
+      </div>
         </div>
       )}
     </div>
