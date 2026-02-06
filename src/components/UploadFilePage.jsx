@@ -51,6 +51,7 @@ function UploadFilePage() {
   return (
     <div style={styles.container}>
       <h2 style={styles.heading}>Upload File</h2>
+      <h5>Save your data on cloud</h5>
       <form onSubmit={handleSubmit}>
         <input
           type="file"
