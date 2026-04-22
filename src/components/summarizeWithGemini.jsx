@@ -1,6 +1,5 @@
 export const summarizeWithGemini = async (excelDataText) => {
   try {
-    // Using the environment variable we set up
     const API_KEY = import.meta.env.VITE_GROQ_API_KEY;
 
     const response = await fetch("https://api.groq.com/openai/v1/chat/completions",
