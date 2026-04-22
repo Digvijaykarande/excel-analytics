@@ -1,21 +1,21 @@
 export const summarizeWithGemini = async (excelDataText) => {
   try {
-    const API_KEY = "AIzaSyAAAWQvHAhuqQT9TP1JJJoWsvh8e6WPAs0";
+    // Using the environment variable we set up
+    const API_KEY = import.meta.env.VITE_GROQ_API_KEY;
 
-    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`,
+    const response = await fetch("https://api.groq.com/openai/v1/chat/completions",
       {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "Authorization": `Bearer ${API_KEY}`,
         },
         body: JSON.stringify({
-          contents: [
+          model: "llama-3.3-70b-versatile", // Currently recommended Groq model
+          messages: [
             {
-              parts: [
-                {
-                  text: `Summarize the following Excel data with bullet points. Highlight key trends or insights in 6-7 concise lines:\n\n${excelDataText}`,
-                },
-              ],
+              role: "user",
+              content: `Summarize the following Excel data with bullet points. Highlight key trends or insights in 6-7 concise lines:\n\n${excelDataText}`,
             },
           ],
         }),
@@ -24,12 +24,13 @@ export const summarizeWithGemini = async (excelDataText) => {
 
     if (!response.ok) {
       const err = await response.text();
-      throw new Error(`Gemini API error: ${response.status} - ${err}`);
+      throw new Error(`Groq API error: ${response.status} - ${err}`);
     }
 
     const data = await response.json();
+    
     return (
-      data?.candidates?.[0]?.content?.parts?.[0]?.text ||
+      data?.choices?.[0]?.message?.content ||
       "No summary generated."
     );
   } catch (error) {
