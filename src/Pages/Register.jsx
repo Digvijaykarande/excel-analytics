@@ -1,89 +1,51 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import "../stylesheets/Register.css";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+import { Spinner } from "../components/ui";
+import AuthArt from "../components/AuthArt";
 
-function Register() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: ''
-  });
+const strength = (p) => {
+  let s = 0;
+  if (p.length >= 8) s++; if (p.length >= 12) s++; if (/[A-Z]/.test(p) && /[a-z]/.test(p)) s++; if (/\d/.test(p) && /[^A-Za-z0-9]/.test(p)) s++;
+  return s;
+};
 
-  const navigate = useNavigate();
+export default function Register() {
+  const { register } = useAuth();
+  const nav = useNavigate();
+  const [form, setForm] = useState({ name: "", email: "", password: "" });
+  const [error, setError] = useState("");
+  const [busy, setBusy] = useState(false);
+  const s = strength(form.password);
+  const set = (k) => (e) => setForm({ ...form, [k]: e.target.value });
 
-  const handleChange = (e) => {
-    setFormData((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value
-    }));
-  };
-
-  const handleSubmit = async (e) => {
+  const submit = async (e) => {
     e.preventDefault();
-
-    try {
-      const res = await fetch('https://excel-analytics-api-3u42.onrender.com/api/auth/register', {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData)
-      });
-
-      const data = await res.json();
-
-      if (res.ok) {
-        alert(" Registration successful!");
-        setFormData({ name: "", email: "", password: "" });
-        navigate("/login");
-      } else {
-        alert(" Registration failed: " + (data.msg || "Something went wrong"));
-      }
-
-    } catch (error) {
-      console.log(error);
-      alert(" Network error");
-    }
+    setError("");
+    if (form.password.length < 8) return setError("Password must be at least 8 characters.");
+    setBusy(true);
+    try { await register(form.name, form.email, form.password); nav("/", { replace: true }); }
+    catch (err) { setError(err.message); }
+    finally { setBusy(false); }
   };
 
   return (
-    <div className='register-container'>
-      <form onSubmit={handleSubmit} className='register-form'>
-        <h2>Create Account</h2>
-
-        <input
-          type='text'
-          name='name'
-          placeholder='Full Name'
-          required
-          value={formData.name}
-          onChange={handleChange}
-        />
-
-        <input
-          type='email'
-          name='email'
-          placeholder='Email Address'
-          required
-          value={formData.email}
-          onChange={handleChange}
-        />
-
-        <input
-          type='password'
-          name='password'
-          placeholder='Password'
-          required
-          value={formData.password}
-          onChange={handleChange}
-        />
-
-        <button type='submit'>Register</button>
-
-        <p className='login-link'>
-          Already have an account? <Link to="/login">Login</Link>
-        </p>
-      </form>
+    <div className="auth">
+      <AuthArt />
+      <div className="auth-form">
+        <form onSubmit={submit} noValidate>
+          <div><h1>Create your account</h1><p className="muted" style={{ marginTop: 4 }}>Free. Takes less than a minute.</p></div>
+          {error && <div className="callout bad" role="alert">{error}</div>}
+          <div className="field"><label htmlFor="name">Full name</label><input id="name" className="input" autoComplete="name" required autoFocus value={form.name} onChange={set("name")} /></div>
+          <div className="field"><label htmlFor="email">Email</label><input id="email" className="input" type="email" autoComplete="email" required value={form.email} onChange={set("email")} /></div>
+          <div className="field"><label htmlFor="password">Password</label>
+            <input id="password" className="input" type="password" autoComplete="new-password" required value={form.password} onChange={set("password")} aria-describedby="pw-hint" />
+            <div className="meter" aria-hidden><i style={{ width: `${(s / 4) * 100}%`, background: s <= 1 ? "var(--bad)" : s === 2 ? "var(--warn)" : "var(--good)" }} /></div>
+            <span id="pw-hint" className="hint">At least 8 characters. Longer with mixed case, numbers and symbols is stronger.</span></div>
+          <button className="btn primary" style={{ height: 40 }} disabled={busy || !form.name || !form.email || !form.password}>{busy && <Spinner />}Create account</button>
+          <p className="muted" style={{ textAlign: "center" }}>Already have an account? <Link to="/login">Log in</Link></p>
+        </form>
+      </div>
     </div>
   );
 }
-
-export default Register;

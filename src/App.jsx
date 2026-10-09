@@ -1,49 +1,53 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import Register from './Pages/Register';
-import Login from "./Pages/Login";
-import Home from "./Pages/Home";
-import About from "./Pages/About";
-import Contact from './Pages/Contact';
-import ProtectedRoute from './components/ProtectedRoute';
-import AdminDashboard from './admin/AdminDashboard';
-import Userinfo from '../src/admin/Userinfo';
-import Uploadsinfo from '../src/admin/Uploadsinfo';
-import UploadFilePage from './components/UploadFilePage';
-import Dashboard from './components/Dashboard';
-import ChartPage from './components/ChartPage'; 
-import MyProjects from './components/MyProjects';
-import WelcomePage from './components/WelcomePage';
-import ExcelSummary from './components/ExcelSummary';
+import { lazy, Suspense } from "react";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
+import { useAuth } from "./context/AuthContext";
+import Layout from "./components/Layout";
+import { PageLoader } from "./components/ui";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Dashboard from "./pages/Dashboard";
+import NewAnalysis from "./pages/NewAnalysis";
+import Library from "./pages/Library";
+import Settings from "./pages/Settings";
+import About from "./pages/About";
+import NotFound from "./pages/NotFound";
 
-function App() {
-  return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>}>
-          <Route index element={<Navigate to="dashboard" />} />
+// heavy pages (chart.js + tables) load on demand
+const Workspace = lazy(() => import("./pages/Workspace"));
+const Admin = lazy(() => import("./pages/Admin"));
 
-          {/* Dashboard and its nested routes */}
-          <Route path="dashboard" element={<Dashboard />}>
-            <Route index element={<WelcomePage />} /> {/* Default view in dashboard */}
-            <Route path="chartpage" element={<ChartPage />} />
-            <Route path="uploadfile" element={<UploadFilePage />} />
-            <Route path="myprojects" element={<MyProjects />} />
-            <Route path="summarypage" element={<ExcelSummary />} />
-            <Route path="about" element={<About />} />
-            <Route path="contact" element={<Contact />} />
-            <Route path='admin-dashboard'element={<AdminDashboard />}></Route>
-            <Route path='userinfo'element={<Userinfo />}></Route>
-            <Route path='uploadsinfo' element={<Uploadsinfo />}></Route>
-          </Route>
-        </Route>
-
-       
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/admindashboard" element={<AdminDashboard />} />
-      </Routes>
-    </Router>
-  );
+function Protected({ children, admin }) {
+  const { user, loading } = useAuth();
+  const loc = useLocation();
+  if (loading) return <PageLoader label="Signing you in…" />;
+  if (!user) return <Navigate to="/login" replace state={{ from: loc.pathname }} />;
+  if (admin && user.role !== "admin") return <Navigate to="/" replace />;
+  return children;
 }
 
-export default App;
+function GuestOnly({ children }) {
+  const { user, loading } = useAuth();
+  if (loading) return <PageLoader />;
+  return user ? <Navigate to="/" replace /> : children;
+}
+
+export default function App() {
+  return (
+    <Suspense fallback={<PageLoader />}>
+      <Routes>
+        <Route path="/login" element={<GuestOnly><Login /></GuestOnly>} />
+        <Route path="/register" element={<GuestOnly><Register /></GuestOnly>} />
+        <Route element={<Protected><Layout /></Protected>}>
+          <Route index element={<Dashboard />} />
+          <Route path="new" element={<NewAnalysis />} />
+          <Route path="workspace/:id" element={<Workspace />} />
+          <Route path="library" element={<Library />} />
+          <Route path="settings" element={<Settings />} />
+          <Route path="about" element={<About />} />
+          <Route path="admin" element={<Protected admin><Admin /></Protected>} />
+        </Route>
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </Suspense>
+  );
+}

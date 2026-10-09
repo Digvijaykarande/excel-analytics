@@ -1,47 +1,27 @@
-import React from 'react';
-import '../stylesheets/About.css';
+import { BarChart3, Brain, Download, Lock, Table2, UploadCloud } from "lucide-react";
 
-const About = () => {
+const FEATURES = [
+  { icon: UploadCloud, title: "Private by default", text: "Spreadsheets are parsed in your browser (.xlsx, .xls, .csv, .tsv, .ods). Save to the cloud only when you want to." },
+  { icon: Table2, title: "Instant data profile", text: "Column types, missing values, duplicates, outliers, distributions and correlations - plus a data-quality score." },
+  { icon: BarChart3, title: "Real aggregation charts", text: "Sum, average, count, min, max or median by any column. Bar, horizontal bar, line, area, pie, doughnut and scatter, with Top-N and sorting." },
+  { icon: Brain, title: "AI analyst", text: "Get findings, risks and chart suggestions, then ask questions in plain English. AI sees a statistical profile, not your whole file." },
+  { icon: Download, title: "Export anywhere", text: "Download charts as PNG/JPG, the aggregated data as CSV, or your cleaned data as .xlsx or .csv." },
+  { icon: Lock, title: "Secure accounts", text: "Hashed passwords, rate limiting, per-user data isolation and role-based admin tools." },
+];
+
+export default function About() {
   return (
-    <div className="about-container">
-      <div className="about-glass-card">
-        <h1>About <span className="highlight">Excel Analytics</span></h1>
-        <p>
-          <strong>Excel Analytics</strong> is a powerful web platform designed to transform your raw spreadsheet data into
-          meaningful insights through interactive charts and visualizations.
-        </p>
-
-        <div className="about-section">
-          <h3>📁 Upload Excel Files</h3>
-          <p>Users can upload `.xls` or `.xlsx` files directly from their device. The system processes and parses the data on the frontend using modern tools like <strong>XLSX.js</strong>.</p>
-        </div>
-
-        <div className="about-section">
-          <h3>📊 Interactive Charts</h3>
-          <p>Once uploaded, you can select any columns as <strong>X and Y axes</strong> to generate interactive <strong>bar, line, or pie charts</strong> using Chart.js. These charts are rendered dynamically based on your selected dataset.</p>
-        </div>
-
-        <div className="about-section">
-          <h3>📥 Export & Download</h3>
-          <p>Visualized charts can be downloaded in high-quality PNG or JPG format for reports, presentations, or documentation — all with a single click.</p>
-        </div>
-
-        <div className="about-section">
-          <h3>🧠 Simple, Elegant, and Efficient</h3>
-          <p>This platform uses a <strong>React-based frontend</strong> with a modern design approach (glassmorphism, responsiveness, clean UI) to provide a seamless experience for data analysts, students, and business users.</p>
-        </div>
-
-        <div className="developer-note">
-          <p>
-            Built with ❤️ by <strong>Digvijay Karande</strong>, a passionate developer focused on creating intelligent tools that simplify data handling and make analytics more accessible to everyone.
-          </p>
-        </div>
+    <div className="page" style={{ maxWidth: 960 }}>
+      <div className="page-head"><div><h1>About Excel Analytics</h1><p>Turn raw spreadsheets into charts and insights without writing a formula.</p></div></div>
+      <div className="grid c3">
+        {FEATURES.map((f) => (
+          <div key={f.title} className="card card-pad stack" style={{ gap: 8 }}>
+            <div className="avatar" style={{ borderRadius: 10 }}><f.icon size={18} /></div>
+            <h3>{f.title}</h3><p className="muted">{f.text}</p>
+          </div>
+        ))}
       </div>
-
-      <div className="decorative-circle circle1"></div>
-      <div className="decorative-circle circle2"></div>
+      <p className="muted" style={{ marginTop: 28 }}>Built with React, Chart.js, Express and MongoDB by <a href="https://digvijaykarande.github.io/portfolio/" target="_blank" rel="noopener noreferrer">Digvijay Karande</a>.</p>
     </div>
   );
-};
-
-export default About;
+}
