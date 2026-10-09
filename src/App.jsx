@@ -3,18 +3,18 @@ import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { useAuth } from "./context/AuthContext";
 import Layout from "./components/Layout";
 import { PageLoader } from "./components/ui";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-import Dashboard from "./pages/Dashboard";
-import NewAnalysis from "./pages/NewAnalysis";
-import Library from "./pages/Library";
-import Settings from "./pages/Settings";
-import About from "./pages/About";
-import NotFound from "./pages/NotFound";
+import Login from "./Pages/Login";
+import Register from "./Pages/Register";
+import Dashboard from "./Pages/Dashboard";
+import NewAnalysis from "./Pages/NewAnalysis";
+import Library from "./Pages/Library";
+import Settings from "./Pages/Settings";
+import About from "./Pages/About";
+import NotFound from "./Pages/NotFound";
 
 // heavy pages (chart.js + tables) load on demand
-const Workspace = lazy(() => import("./pages/Workspace"));
-const Admin = lazy(() => import("./pages/Admin"));
+const Workspace = lazy(() => import("./Pages/Workspace"));
+const Admin = lazy(() => import("./Pages/Admin"));
 
 function Protected({ children, admin }) {
   const { user, loading } = useAuth();
