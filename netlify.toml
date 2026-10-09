@@ -1,3 +1,10 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  VITE_API_URL = "https://excel-analytics-api-3u42.onrender.com"
+
 [[redirects]]
   from = "/*"
   to = "/index.html"
